@@ -56,11 +56,11 @@ cat >user-data.tmp <<EOF
 echo AWSAccessKeyId=$AWS_ACCESS_KEY > /root/.aws.creds
 echo AWSSecretKey=$AWS_SECRET_KEY >> /root/.aws.creds
 
-apt-get install -y git
-
 apt-get update
 apt-get install -y jq
 apt-get install -y python-pip python-setuptools
+apt-get install -y git
+
 pip install awscli
 
 cd /root
