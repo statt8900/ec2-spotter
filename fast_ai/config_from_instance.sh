@@ -39,7 +39,7 @@ fi
 aws ec2 modify-instance-attribute --instance-id $instanceId --block-device-mappings "[{\"DeviceName\": \"/dev/sda1\",\"Ebs\":{\"DeleteOnTermination\":false}}]"
 
 # Get the volume of the instance
-export volumeId=`aws ec2 describe-instances --filters Name=tag:Name,Values=$name-gpu-machine --output text --query 'Reservations[*].Instances[0].BlockDeviceMappings[0].Ebs.VolumeId'`
+export volumeId=`aws ec2 describe-instances --instance-ids $instanceId --output text --query 'Reservations[*].Instances[0].BlockDeviceMappings[0].Ebs.VolumeId'`
 
 # name the volume of this instance
 aws ec2 create-tags --resources $volumeId --tags Key=Name,Value="${name}-volume"
