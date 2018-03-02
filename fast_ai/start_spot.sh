@@ -1,5 +1,19 @@
 # The config file was created in ondemand_to_spot.sh
 export config_file=my.conf
+while [[ $# -gt 0 ]]
+do
+key="$1"
+case $key in
+    --config_file)
+    config_file="$2"
+    shift # pass argument
+    ;;
+    *)
+    ;;
+esac
+shift # pass argument or value
+done
+echo "Using config file: $config_file"
 
 # Set current dir to working dir - http://stackoverflow.com/a/10348989/277871
 cd "$(dirname ${BASH_SOURCE[0]})"
